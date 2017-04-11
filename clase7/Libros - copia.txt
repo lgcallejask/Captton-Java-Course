@@ -1,0 +1,6 @@
+Ficcionario;Borges, Jorge Luis;F.C.E.;1985
+Farenheit 451;Bradbury, Ray;Minotauro;1953
+Historia de cronopios y famas;Cortazar, Julio;Alfaguara;1962
+El viejo y el mar;Hemingway, Ernest;Planeta;1952
+El Silmarillion;Tolkien, J.R.R.;Minotauro;1977
+Administracion de recursos humanos;Sherman:Bohlander:Snell;Planeta;2001
