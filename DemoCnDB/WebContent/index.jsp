@@ -28,10 +28,14 @@
 			<td><%=alu.getApellido()%></td>
 			<td><%=alu.getEdad()%></td>
 			<td><%=alu.getIdLocalidad()%></td>
+			<td><a href="borrar.jsp?id=<%=alu.getId()%>">Borrar</a></td>
+			<td><a href="insertarModificar.jsp?id=<%=alu.getId()%>">Modificar</a></td>
 		</tr>
 		<%
 			}
 		%>
 	</table>
+	
+	<a href="insertarModificar.jsp">DAR DE ALTA ALUMNO</a>
 </body>
 </html>

@@ -106,6 +106,71 @@ public class Database
 			}
 		}
 	}
+	
+	public static void borrarAlumno(long id)
+	{
+		Connection cn = conectar();
+		PreparedStatement prstmt = null;
+		
+		try {
+			prstmt = cn.prepareStatement("DELETE FROM Alumno where id = ?");
+			prstmt.setLong(1, id);
+			prstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally 
+		{
+			try {
+				prstmt.close();
+				cn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	public static ArrayList<Localidad> listarLocalidad()
+	{
+		ArrayList<Localidad> listaAlu = new ArrayList<Localidad>();
 
+		Connection cn = conectar();
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try 
+		{
+			stmt = cn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Localidad");
+			while(rs.next())
+			{
+				Localidad alu = new Localidad
+						(rs.getLong("id"), 
+						rs.getString("nombre"),
+						rs.getString("ciudad"), 						
+						rs.getString("pais"),
+						rs.getLong("cp"));
+				listaAlu.add(alu);
+			}
+		}
+		catch (SQLException e) 
+		{		
+			e.printStackTrace();
+		}
+		finally 
+		{
+			try 
+			{
+				rs.close();
+				stmt.close();
+				cn.close();
+			}
+			catch (SQLException e) {			
+				e.printStackTrace();
+			}
+		}				
+		return listaAlu;		
+	}
 
 }
