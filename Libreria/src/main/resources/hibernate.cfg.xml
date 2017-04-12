@@ -3,7 +3,7 @@
 	<session-factory>
 		<!-- Datos de conexion a la base de datos -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/db_ejemplo?zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/dbLibreria?zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">1234</property>
 		<!-- JDBC connection pool (use the built-in) -->
@@ -17,9 +17,9 @@
 			Echo all executed SQL to stdout -->
 		<property name="show_sql">false</property>
 		<!-- Mapeo de las clases que definen entidades de base de datos -->
-		<mapping class="com.captton.model.Empleado" />
-		<mapping class="com.captton.model.Departamento" />
-		<mapping class="com.captton.model.Reunion" />
-		<mapping class="com.captton.model.DetallesEmpleado" />
+		<mapping class="com.captton.model.Libro" />
+		<mapping class="com.captton.model.Autor" />
+		<mapping class="com.captton.model.Genero" />
+		<mapping class="com.captton.model.Editorial" />
 	</session-factory>
 </hibernate-configuration>
