@@ -1,3 +1,3 @@
 # Captton-Java-Course
 
-Ejercicios para aprender Java.
+Ejercicios realizados durante el curso.
