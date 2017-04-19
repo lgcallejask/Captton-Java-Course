@@ -7,8 +7,8 @@
 <title>App Empleados</title>
 </head>
 <body>
-	 <h1>Bienvenido al sistema de gestion empleadense</h1>
-	 <a href="Empleado/Lista">Ir a la lista de empleados</a>
+	<h1>Bienvenido al sistema de gestion empleadense</h1>
+	<a href="Empleado/Lista">Ir a la lista de empleados</a>
 
 </body>
 </html>

@@ -4,8 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="DetallesEmpleado")
-public class DetallesEmpleado 
-{
+public class DetallesEmpleado {
 	@Id
 	@Column(name="id")
 	private Long id;
@@ -23,8 +22,10 @@ public class DetallesEmpleado
 	@OneToOne
 	private Empleado empleado;
 	
-	public DetallesEmpleado(){}
+	public DetallesEmpleado(){
+	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -64,7 +65,5 @@ public class DetallesEmpleado
 	public void setEmpleado(Empleado empleado) {
 		this.empleado = empleado;
 	}
-	
-	
 
 }

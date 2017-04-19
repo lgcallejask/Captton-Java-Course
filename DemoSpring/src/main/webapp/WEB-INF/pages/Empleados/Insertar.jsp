@@ -9,26 +9,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<center>
-	<form:form modelAttribute="empleado" action="Nuevo" method="POST">
-	<form:label path="nombre">Nombre</form:label>	<form:input path="nombre" /><br>
-	<form:label path="telefono">Telefono</form:label>	<form:input path="telefono" /><br>
-	<form:label path="apellido">Apellido</form:label> <form:input path="apellido" /><br>
-	<form:label path="fecha_nacimiento">Fecha de Nacimiento</form:label>
-	 <form:input path="fecha_nacimiento" /><br>
-	<form:label path="dpto">Departamento</form:label> <br>
-	<form:select path="dpto.id"><br>
-			<c:forEach items="${departamentos}" var="depto">
-				<form:option value="${depto.id}">
-					<c:out value="${depto.nombre}"></c:out>
-				</form:option>
-			</c:forEach>
+	<form:form modelAttribute="emple" action="Viejo" method="post">
+		<form:label path="nombre">Nombre</form:label><form:input path="nombre" maxlength="50"/> <br>
+		<form:label path="apellido">Apellido</form:label><form:input path="apellido" maxlength="50"/> <br>
+		<form:label path="telefono">Telefono</form:label><form:input path="telefono" maxlength="10"/> <br>
+		<form:label path="fecha_nacimiento">Fecha Nacimiento</form:label><form:input path="fecha_nacimiento" /> <br>
+		<form:label path="dpto">Departamento</form:label>
+		<form:select path="dpto.id">
+		<c:forEach items="${departamentos}" var="depto">
+			<form:option value="${depto.id}"> 
+				<c:out value="${depto.nombre}"></c:out>
+			</form:option>
+		</c:forEach>
 		</form:select>
-	<br><br><br><br>
 		<input type="submit" value="Enviar">
-
 	</form:form>
-</center>
 
 </body>
 </html>

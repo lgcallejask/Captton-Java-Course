@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd  
-  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
-  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd  
-  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	<!-- Paquete donde estaran nuestros controllers -->
 	<context:component-scan base-package="com.captton.controller" />
 	<!-- Propiedades DB -->
@@ -19,13 +17,14 @@
 		<property name="url" value="${database.url}" />
 		<property name="username" value="${database.user}" />
 		<property name="password" value="${database.password}" />
-	</bean><!-- En vez de establecer una clase aparte, la definimos como un 
-		bean -->
+	</bean>
+	<!-- En vez de establecer una clase aparte, la definimos como un bean -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
-			<list><!-- Aca pondremos las clases que mapeemos -->
+			<list>
+				<!-- Aca pondremos las clases que mapeemos -->
 				<value>com.captton.model.Empleado</value>
 				<value>com.captton.model.DetallesEmpleado</value>
 				<value>com.captton.model.Reunion</value>
@@ -44,9 +43,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="persistenceExceptionTranslationPostProcessor"
-		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" /><!-- 
-		Resuelve los archivos que se van a usar para las vistas, en este caso todo 
-		lo que posea Extension 'jsp'. -->
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<!-- Resuelve los archivos que se van a usar para las vistas, en este caso 
+		todo lo que posea Extension 'jsp'. -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
@@ -57,7 +56,7 @@
 		</property>
 	</bean>
 	<!-- DAOs -->
-	<bean id="empleadoDAO" class="com.captton.data.EmpleadoDAO" />
-	<bean id="departamentoDAO" class="com.captton.data.DepartamentoDAO" />
-
+	<bean id="empleadoDao" class="com.captton.data.EmpleadoDAO" />
+	<bean id="departamentoDao" class="com.captton.data.DepartamentoDAO" />
+	<bean id="detalleDao" class="com.captton.data.DetalleDAO" />
 </beans>

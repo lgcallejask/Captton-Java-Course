@@ -4,14 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class SharedController
-{
+public class SharedController {
+
 	
 	@RequestMapping("/")
-	public String index()
-	{
+	public String index(){
 		return "index";
 	}
-	
-	
+		
 }
