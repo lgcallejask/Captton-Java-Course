@@ -34,7 +34,7 @@ public class OrdenDeTrabajo {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name="fechaIngreso")
-	private Date fechaIngeso;
+	private Date fechaIngreso;
 	
 	@ManyToOne()
 	@JoinColumn(name="idPropietario")
@@ -87,12 +87,12 @@ public class OrdenDeTrabajo {
 		this.patente = patente;
 	}
 
-	public Date getFechaIngeso() {
-		return fechaIngeso;
+	public Date getFechaIngreso() {
+		return fechaIngreso;
 	}
 
-	public void setFechaIngeso(Date fechaIngeso) {
-		this.fechaIngeso = fechaIngeso;
+	public void setFechaIngreso(Date fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
 	}
 
 	public Propietario getPropietario() {

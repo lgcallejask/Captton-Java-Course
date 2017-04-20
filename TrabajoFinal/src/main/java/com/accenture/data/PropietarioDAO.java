@@ -7,55 +7,55 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.accenture.model.OrdenDeTrabajo;
+import com.accenture.model.Propietario;
 
-public class OrdenDeTrabajoDAO {
+public class PropietarioDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
 	
-	public List <OrdenDeTrabajo> listar(){
+	public List <Propietario> listar(){
 		
 		Session s = sessionFactory.openSession();
-		List<OrdenDeTrabajo> lista = s.createQuery("from OrdenDeTrabajo").list();
+		List<Propietario> lista = s.createQuery("from Propietario").list();
 		s.close();
 		return lista;
 	}
 	
 	@Transactional
-	public void insertarOrdenDeTrabajo(OrdenDeTrabajo orden){
+	public void insertarPropietario(Propietario propietario){
 		Session s = sessionFactory.openSession();
 		s.beginTransaction();
-		long id = (Long)s.save(orden);
-		orden.setId(id);
+		long id = (Long)s.save(propietario);
+		propietario.setId(id);
 		s.getTransaction().commit();
 		s.close();
 	}
 	
 	@Transactional
-	public void eliminarOrdenDeTrabajo(OrdenDeTrabajo orden){
+	public void eliminarPropietario(Propietario propietario){
 		Session s = sessionFactory.openSession();
 		s.beginTransaction();
-		s.delete(orden);
+		s.delete(propietario);
 		s.getTransaction().commit();
 		s.close();
 	}
 	
 	@Transactional
-	public OrdenDeTrabajo getOrdenDeTrabajo(long id){
+	public Propietario getPropietario(long id){
 		Session s = sessionFactory.openSession();
 		s.getTransaction();
-		OrdenDeTrabajo orden = s.get(OrdenDeTrabajo.class, id);
+		Propietario propietario = s.get(Propietario.class, id);
 		s.close();
-		return orden;
+		return propietario;
 	}
 	
 	@Transactional
-	public void modificarOrdenDeTrabajo(OrdenDeTrabajo orden){
+	public void modificarPropietario(Propietario propietario){
 		Session s = sessionFactory.openSession();
 		s.beginTransaction();
-		s.update(orden);
+		s.update(propietario);
 		s.getTransaction().commit();
 		s.close();
 	}

@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1>Trabajo Práctico Final - Taller</h1>
-	<a href="OrdenDeTrabajo/Lista">Ir a la lista de odenes de trabajo</a>
+	<a href="OrdenDeTrabajo/ListaOrdenes">Ir a la lista de odenes de trabajo</a>
 </body>
 </html>

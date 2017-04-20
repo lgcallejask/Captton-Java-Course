@@ -33,11 +33,10 @@
 					<td><c:out value="En progreso"></c:out></td>
 				</c:if>
 				<c:if test="${orden.estado==true}">
-					<td><c:out value="Finalizada"></c:out></td>
+					<td><c:out value="Completa"></c:out></td>
 				</c:if>
 				</td>
 				<td><c:out value="${orden.horasTrabajadas}"></c:out></td>
-				<td><a href="DetalleOrden/${orden.id}">Ver Detalles</a></td>
 				<td><a href="ModificarOrden/${orden.id}">Modificar</a></td>
 				<!-- <td><a href="Borrar/${emple.id}">Borrar</a></td>
 			<td><a href="../DetallesEmpleado/Detalles/${emple.id}">Ver Detalles</a></td> -->

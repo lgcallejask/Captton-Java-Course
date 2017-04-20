@@ -7,55 +7,55 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.accenture.model.OrdenDeTrabajo;
+import com.accenture.model.Empleado;
 
-public class OrdenDeTrabajoDAO {
+public class EmpleadoDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
 	
-	public List <OrdenDeTrabajo> listar(){
+	public List <Empleado> listar(){
 		
 		Session s = sessionFactory.openSession();
-		List<OrdenDeTrabajo> lista = s.createQuery("from OrdenDeTrabajo").list();
+		List<Empleado> lista = s.createQuery("from Empleado").list();
 		s.close();
 		return lista;
 	}
 	
 	@Transactional
-	public void insertarOrdenDeTrabajo(OrdenDeTrabajo orden){
+	public void insertarEmpleado(Empleado empleado){
 		Session s = sessionFactory.openSession();
 		s.beginTransaction();
-		long id = (Long)s.save(orden);
-		orden.setId(id);
+		long id = (Long)s.save(empleado);
+		empleado.setId(id);
 		s.getTransaction().commit();
 		s.close();
 	}
 	
 	@Transactional
-	public void eliminarOrdenDeTrabajo(OrdenDeTrabajo orden){
+	public void eliminarEmpleado(Empleado empleado){
 		Session s = sessionFactory.openSession();
 		s.beginTransaction();
-		s.delete(orden);
+		s.delete(empleado);
 		s.getTransaction().commit();
 		s.close();
 	}
 	
 	@Transactional
-	public OrdenDeTrabajo getOrdenDeTrabajo(long id){
+	public Empleado getEmpleado(long id){
 		Session s = sessionFactory.openSession();
 		s.getTransaction();
-		OrdenDeTrabajo orden = s.get(OrdenDeTrabajo.class, id);
+		Empleado empleado = s.get(Empleado.class, id);
 		s.close();
-		return orden;
+		return empleado;
 	}
 	
 	@Transactional
-	public void modificarOrdenDeTrabajo(OrdenDeTrabajo orden){
+	public void modificarEmpleado(Empleado empleado){
 		Session s = sessionFactory.openSession();
 		s.beginTransaction();
-		s.update(orden);
+		s.update(empleado);
 		s.getTransaction().commit();
 		s.close();
 	}

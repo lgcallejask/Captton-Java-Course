@@ -58,4 +58,6 @@
 	</bean>
 	<!-- DAOs -->
 	<bean id="ordenDeTrabajoDao" class="com.accenture.data.OrdenDeTrabajoDAO" />
+	<bean id="propietarioDao" class="com.accenture.data.PropietarioDAO" />
+	<bean id="empleadoDao" class="com.accenture.data.EmpleadoDAO" />
 </beans>
