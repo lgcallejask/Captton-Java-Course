@@ -60,4 +60,6 @@
 	<bean id="ordenDeTrabajoDao" class="com.accenture.data.OrdenDeTrabajoDAO" />
 	<bean id="propietarioDao" class="com.accenture.data.PropietarioDAO" />
 	<bean id="empleadoDao" class="com.accenture.data.EmpleadoDAO" />
+	<bean id="detalleDao" class="com.accenture.data.OrdenDeTrabajo_RepuestoDAO" />
+	<bean id="repuestoDao" class="com.accenture.data.RepuestoDAO" />
 </beans>

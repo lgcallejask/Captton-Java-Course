@@ -23,10 +23,46 @@ public class OrdenDeTrabajo_Repuesto implements Serializable{
 	@JoinColumn(name="idRepuesto")
 	private Repuesto repuesto;
 	
-	@Column(name="cantiedadUsadaDeRepuesto")
-	private String cantiedadUsadaDeRepuesto;
+	@Column(name="cantidadUsadaDeRepuesto")
+	private int cantidadUsadaDeRepuesto;
 	
+	@Column(name="costoDetalle")
+	private float costo;
+
 	public OrdenDeTrabajo_Repuesto() {
 	}
+
+	public OrdenDeTrabajo getOrden() {
+		return orden;
+	}
+
+	public void setOrden(OrdenDeTrabajo orden) {
+		this.orden = orden;
+	}
+
+	public Repuesto getRepuesto() {
+		return repuesto;
+	}
+
+	public void setRepuesto(Repuesto repuesto) {
+		this.repuesto = repuesto;
+	}
+
+	public int getCantidadUsadaDeRepuesto() {
+		return cantidadUsadaDeRepuesto;
+	}
+
+	public void setCantidadUsadaDeRepuesto(int cantidadUsadaDeRepuesto) {
+		this.cantidadUsadaDeRepuesto = cantidadUsadaDeRepuesto;
+	}
+	
+	public float getCosto() {
+		return costo;
+	}
+
+	public void setCosto(float costo) {
+		this.costo = costo;
+	}
+	
 	
 }

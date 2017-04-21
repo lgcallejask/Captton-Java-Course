@@ -19,6 +19,7 @@
 			<th>Empleado</th>
 			<th>Estado</th>
 			<th>Horas Trabajadas</th>
+			<th>Costo Total</th>
 		</tr>
 		<c:forEach var="orden" items="${listaOrdenes}">
 			<tr>
@@ -37,8 +38,15 @@
 				</c:if>
 				</td>
 				<td><c:out value="${orden.horasTrabajadas}"></c:out></td>
-				<td><a href="DetalleOrden/${orden.id}">Ver Detalles</a></td>
+				<c:if test="${orden.estado==false}">
+					<td><c:out value="Orden sin finalizar"></c:out></td>
+				</c:if>
+				<c:if test="${orden.estado==true}">
+					<td><c:out value="${orden.costo}"></c:out></td>
+				</c:if>
+				</td>
 				<td><a href="ModificarOrden/${orden.id}">Modificar</a></td>
+				<td><a href="../DetalleDeOrden/ListaDetalles/${orden.id}">Ver Detalles</a></td>
 				<!-- <td><a href="Borrar/${emple.id}">Borrar</a></td>
 			<td><a href="../DetallesEmpleado/Detalles/${emple.id}">Ver Detalles</a></td> -->
 

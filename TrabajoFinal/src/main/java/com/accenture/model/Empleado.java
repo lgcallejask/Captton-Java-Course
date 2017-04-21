@@ -27,8 +27,6 @@ public class Empleado {
 	@Column(name="apellido")
 	private String apellido;
 	
-	//considerar que pasaria si se borra un empleado y se consulta una orden de ese empleado.
-	//va mapeado por empelado y no por idEmpleado
 	@OneToMany(mappedBy="empleado", cascade= CascadeType.REMOVE)
 	private List<OrdenDeTrabajo> listaOrdenes = new ArrayList<OrdenDeTrabajo>();
 	

@@ -13,16 +13,15 @@ public class OrdenDeTrabajoDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	
-	
+
+
 	public List <OrdenDeTrabajo> listar(){
-		
 		Session s = sessionFactory.openSession();
 		List<OrdenDeTrabajo> lista = s.createQuery("from OrdenDeTrabajo").list();
 		s.close();
 		return lista;
 	}
-	
+
 	@Transactional
 	public void insertarOrdenDeTrabajo(OrdenDeTrabajo orden){
 		Session s = sessionFactory.openSession();
@@ -32,7 +31,7 @@ public class OrdenDeTrabajoDAO {
 		s.getTransaction().commit();
 		s.close();
 	}
-	
+
 	@Transactional
 	public void eliminarOrdenDeTrabajo(OrdenDeTrabajo orden){
 		Session s = sessionFactory.openSession();
@@ -41,7 +40,7 @@ public class OrdenDeTrabajoDAO {
 		s.getTransaction().commit();
 		s.close();
 	}
-	
+
 	@Transactional
 	public OrdenDeTrabajo getOrdenDeTrabajo(long id){
 		Session s = sessionFactory.openSession();
@@ -50,7 +49,7 @@ public class OrdenDeTrabajoDAO {
 		s.close();
 		return orden;
 	}
-	
+
 	@Transactional
 	public void modificarOrdenDeTrabajo(OrdenDeTrabajo orden){
 		Session s = sessionFactory.openSession();
@@ -59,5 +58,5 @@ public class OrdenDeTrabajoDAO {
 		s.getTransaction().commit();
 		s.close();
 	}
-		
+
 }

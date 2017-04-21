@@ -58,6 +58,9 @@ public class OrdenDeTrabajo {
 	
 	@Column(name="horasTrabajadas")
 	private float horasTrabajadas;
+
+	@Column(name="costoTotal")
+	private float costo;
 	
 	@ManyToMany(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
 	@JoinTable(name="OrdenDeTrabajo_Repuesto", 

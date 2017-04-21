@@ -25,10 +25,10 @@ public class OrdenDeTrabajoController {
 
 	@Autowired
 	PropietarioDAO propietarioDAO;
-	
+
 	@Autowired
 	EmpleadoDAO empleadoDAO;
-	
+
 	@RequestMapping("/ListaOrdenes")
 	public ModelAndView ListarOrdenes(){
 		ModelAndView m = new ModelAndView("OrdenesDeTrabajo/ListaOrdenes");
@@ -52,6 +52,13 @@ public class OrdenDeTrabajoController {
 		return "redirect:/OrdenDeTrabajo/ListaOrdenes";
 	}
 
+	@RequestMapping("/Borrar/{id}")
+	public String borrarOrden(@PathVariable Long id){
+		OrdenDeTrabajo orden = ordenDeTrabajoDAO.getOrdenDeTrabajo(id);
+		ordenDeTrabajoDAO.eliminarOrdenDeTrabajo(orden);
+		return "redirect:/Empleado/Lista";
+	}
+
 	@RequestMapping("/ModificarOrden/{id}")
 	public ModelAndView modificarOrden(@PathVariable Long id){
 		OrdenDeTrabajo orden = ordenDeTrabajoDAO.getOrdenDeTrabajo(id);
@@ -60,14 +67,14 @@ public class OrdenDeTrabajoController {
 		m.addObject("propietarios", propietarioDAO.listar());
 		m.addObject("empleados", empleadoDAO.listar());
 		return m;
-		
+
 	}
-	
+
 	@RequestMapping(path = "ModificarOrden/{id}", method =RequestMethod.POST)
 	public String modificarOrden(@ModelAttribute("orden") OrdenDeTrabajo orden, @PathVariable Long id){
 		orden.setId(id);
 		ordenDeTrabajoDAO.modificarOrdenDeTrabajo(orden);
 		return "redirect:/OrdenDeTrabajo/ListaOrdenes";
 	}
-	
+
 }

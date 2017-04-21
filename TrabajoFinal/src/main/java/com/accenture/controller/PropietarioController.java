@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.accenture.data.PropietarioDAO;
+import com.accenture.model.OrdenDeTrabajo;
 import com.accenture.model.Propietario;
 
 
@@ -44,6 +45,13 @@ public class PropietarioController {
 		return "redirect:/OrdenDeTrabajo/NuevaOrden";
 	}
 
+	@RequestMapping("/BorrarPropietario/{id}")
+	public String borrarOrden(@PathVariable Long id){
+		Propietario propietario = propietarioDAO.getPropietario(id);
+		propietarioDAO.eliminarPropietario(propietario);
+		return "redirect:/Empleado/Lista"; //correjir
+	}
+	
 	@RequestMapping("/ModificarPropietario/{id}")
 	public ModelAndView modificarOrden(@PathVariable Long id){
 		Propietario propietario = propietarioDAO.getPropietario(id);
