@@ -9,13 +9,13 @@
 <title>Nueva Orden</title>
 </head>
 <body>
-	<form:form modelAttribute="detalle" action="NuevoDetalle" method="post">
-		<input type="hidden" name="orden" value="${detalle.orden}">
+	<form:form modelAttribute="detalle" action="../NuevoDetalle" method="POST">
+		<input type="hidden" name="orden.id" value="${detalle.orden.id}">
 		<br>
-		<form:label path="repuesto">Repuesto:</form:label>
-		<form:select path="repuesto">
+		<form:label path="repuesto.id">Repuesto:</form:label>
+		<form:select path="repuesto.id">
 			<c:forEach items="${repuestos}" var="repuesto">
-				<form:option value="${repuesto}">
+				<form:option value="${repuesto.id}">
 					<c:out value="${repuesto.getNombre()}"></c:out>
 				</form:option>
 			</c:forEach>

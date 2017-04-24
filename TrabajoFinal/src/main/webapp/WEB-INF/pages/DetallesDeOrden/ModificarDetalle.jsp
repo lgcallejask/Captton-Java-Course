@@ -6,60 +6,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Modificar Orden</title>
+<title>Nueva Orden</title>
 </head>
 <body>
-	<form:form modelAttribute="orden"
-		action="../ModificarOrden/${orden.id}" method="post">
-		<form:label path="Patente">Patente:</form:label>
-		<form:input path="patente" maxlength="7" />
+	<form:form modelAttribute="detalle" action="../../ModificarDetalle/${idOrden}/${idRepuesto}" method="POST">
+		<input type="hidden" name="orden.id" value="${detalle.orden.id}">
 		<br>
-		<form:label path="FechaIngreso">Fecha Ingreso:</form:label>
-		<form:input path="fechaIngreso" />
+		<input type="hidden" name="repuesto.id" value="${detalle.repuesto.id}">
 		<br>
-		<form:label path="propietario">Propietario:</form:label>
-		<form:select path="propietario.id">
-			<c:forEach items="${propietarios}" var="propietario">
-				<form:option value="${propietario.id}">
-					<c:out value="${propietario.nombre}"></c:out>
-				</form:option>
-			</c:forEach>
-		</form:select>
+		<form:label path="repuesto.nombre">Repuesto: ${detalle.repuesto.nombre}</form:label>
 		<br>
-		<form:label path="Marca">Marca:</form:label>
-		<form:input path="marca" maxlength="50" />
-		<br>
-		<form:label path="Modelo">Modelo:</form:label>
-		<form:input path="modelo" maxlength="50" />
-		<br>
-		<form:label path="Descripcion">Descripción:</form:label>
-		<form:input path="descripcion" maxlength="256" />
-		<br>
-		<form:label path="Empleado">Empleado:</form:label>
-		<form:select path="empleado.id">
-			<c:forEach items="${empleados}" var="empleado">
-				<form:option value="${empleado.id}">
-					<c:out value="${empleado.nombre}"></c:out>
-				</form:option>
-			</c:forEach>
-		</form:select>
-		<br>
-		<form:label path="Estado">Estado:</form:label>
-		<form:select path="estado">
-			<form:option value="${false}">
-				<c:out value="En progreso"></c:out>
-			</form:option>
-			<form:option value="${true}">
-				<c:out value="Finalizada"></c:out>
-			</form:option>
-		</form:select>
-		<br>
-		<form:label path="HorasTrabajadas">Horas Trabajadas:</form:label>
-		<form:input path="horasTrabajadas" />
+		<form:label path="cantidadUsadaDeRepuesto">Cantidad usada de repuesto:</form:label>
+		<form:input path="cantidadUsadaDeRepuesto" />
 		<br>
 		<input type="submit" value="Enviar">
-		<br>
 	</form:form>
+	
 	<button type="button" name="back" onclick="history.back()">Volver</button>
 </body>
 </html>

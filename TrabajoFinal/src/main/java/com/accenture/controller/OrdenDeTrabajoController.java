@@ -21,7 +21,7 @@ import com.accenture.model.OrdenDeTrabajo;
 public class OrdenDeTrabajoController {
 
 	@Autowired
-	OrdenDeTrabajoDAO ordenDeTrabajoDAO;
+	OrdenDeTrabajoDAO ordenDAO;
 
 	@Autowired
 	PropietarioDAO propietarioDAO;
@@ -32,7 +32,7 @@ public class OrdenDeTrabajoController {
 	@RequestMapping("/ListaOrdenes")
 	public ModelAndView ListarOrdenes(){
 		ModelAndView m = new ModelAndView("OrdenesDeTrabajo/ListaOrdenes");
-		List<OrdenDeTrabajo> lista = ordenDeTrabajoDAO.listar();
+		List<OrdenDeTrabajo> lista = ordenDAO.listar();
 		m.addObject("listaOrdenes", lista);
 		return m;
 	}
@@ -48,20 +48,22 @@ public class OrdenDeTrabajoController {
 
 	@RequestMapping(path="NuevaOrden", method=RequestMethod.POST)
 	public String insertarOrden(@ModelAttribute("orden") OrdenDeTrabajo orden){
-		ordenDeTrabajoDAO.insertarOrdenDeTrabajo(orden);
+		orden.setManoDeObra(150);
+		orden.setCosto(orden.getManoDeObra()*orden.getHorasTrabajadas());
+		ordenDAO.insertarOrdenDeTrabajo(orden);
 		return "redirect:/OrdenDeTrabajo/ListaOrdenes";
 	}
 
 	@RequestMapping("/Borrar/{id}")
 	public String borrarOrden(@PathVariable Long id){
-		OrdenDeTrabajo orden = ordenDeTrabajoDAO.getOrdenDeTrabajo(id);
-		ordenDeTrabajoDAO.eliminarOrdenDeTrabajo(orden);
+		OrdenDeTrabajo orden = ordenDAO.getOrdenDeTrabajo(id);
+		ordenDAO.eliminarOrdenDeTrabajo(orden);
 		return "redirect:/Empleado/Lista";
 	}
 
 	@RequestMapping("/ModificarOrden/{id}")
 	public ModelAndView modificarOrden(@PathVariable Long id){
-		OrdenDeTrabajo orden = ordenDeTrabajoDAO.getOrdenDeTrabajo(id);
+		OrdenDeTrabajo orden = ordenDAO.getOrdenDeTrabajo(id);
 		ModelAndView m = new ModelAndView("OrdenesDeTrabajo/ModificarOrden");
 		m.addObject("orden",orden);
 		m.addObject("propietarios", propietarioDAO.listar());
@@ -73,8 +75,29 @@ public class OrdenDeTrabajoController {
 	@RequestMapping(path = "ModificarOrden/{id}", method =RequestMethod.POST)
 	public String modificarOrden(@ModelAttribute("orden") OrdenDeTrabajo orden, @PathVariable Long id){
 		orden.setId(id);
-		ordenDeTrabajoDAO.modificarOrdenDeTrabajo(orden);
+		orden.setManoDeObra(150);
+		OrdenDeTrabajo antiguaOrden = ordenDAO.getOrdenDeTrabajo(id);
+		orden.setCosto(antiguaOrden.getCosto()+orden.getManoDeObra()*(orden.getHorasTrabajadas()-antiguaOrden.getHorasTrabajadas()));
+		ordenDAO.modificarOrdenDeTrabajo(orden);
 		return "redirect:/OrdenDeTrabajo/ListaOrdenes";
 	}
 
+	@RequestMapping("/FinalizarOrden/{id}")
+	public ModelAndView FinalizarOrden(@PathVariable Long id){
+		OrdenDeTrabajo orden = ordenDAO.getOrdenDeTrabajo(id);
+		ModelAndView m = new ModelAndView("OrdenesDeTrabajo/FinalizarOrden");
+		m.addObject("orden",orden);
+		return m;
+
+	}
+
+	@RequestMapping(path = "FinalizarOrden/{id}", method =RequestMethod.POST)
+	public String finalizarOrden(@ModelAttribute("orden") OrdenDeTrabajo orden, @PathVariable Long id){
+		orden.setId(id);
+		orden.setManoDeObra(150);
+		orden.setCosto(orden.getCosto()+orden.getManoDeObra()*orden.getHorasTrabajadas());
+		ordenDAO.modificarOrdenDeTrabajo(orden);
+		return "redirect:/OrdenDeTrabajo/ListaOrdenes";
+	}
+	
 }

@@ -59,14 +59,21 @@ public class OrdenDeTrabajo {
 	@Column(name="horasTrabajadas")
 	private float horasTrabajadas;
 
+	@Column(name="manoDeObra")
+	private float manoDeObra;
+
+	public float getManoDeObra() {
+		return manoDeObra;
+	}
+
+	public void setManoDeObra(float manoDeObra) {
+		this.manoDeObra = manoDeObra;
+	}
+
 	@Column(name="costoTotal")
 	private float costo;
 	
-	@ManyToMany(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
-	@JoinTable(name="OrdenDeTrabajo_Repuesto", 
-	joinColumns={@JoinColumn(name="idOrdenDeTrabajo")},
-	inverseJoinColumns={@JoinColumn(name="idRepuesto")})
-	private List<Repuesto> listaRepuestos = new ArrayList<Repuesto>();
+	
 	
 	@OneToMany(mappedBy="orden", orphanRemoval = true, cascade= CascadeType.REMOVE)
 	private List<OrdenDeTrabajo_Repuesto> listaDetallesOrdenRepuesto = new ArrayList<OrdenDeTrabajo_Repuesto>();
@@ -154,12 +161,12 @@ public class OrdenDeTrabajo {
 		this.horasTrabajadas = horasTrabajadas;
 	}
 
-	public List<Repuesto> getListaRepuestos() {
-		return listaRepuestos;
+	public float getCosto() {
+		return costo;
 	}
 
-	public void setListaRepuestos(List<Repuesto> listaRepuestos) {
-		this.listaRepuestos = listaRepuestos;
+	public void setCosto(float costo) {
+		this.costo = costo;
 	}
 
 	public List<OrdenDeTrabajo_Repuesto> getListaDetallesOrdenRepuesto() {

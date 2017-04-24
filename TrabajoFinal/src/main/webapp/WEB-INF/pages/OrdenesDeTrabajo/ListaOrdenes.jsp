@@ -10,6 +10,7 @@
 <body>
 	<table border=3>
 		<tr>
+			<th>Numero de Orden</th>
 			<th>Patente</th>
 			<th>Fecha Ingreso</th>
 			<th>Propietario</th>
@@ -23,6 +24,7 @@
 		</tr>
 		<c:forEach var="orden" items="${listaOrdenes}">
 			<tr>
+				<td><c:out value="${orden.id}"></c:out></td>
 				<td><c:out value="${orden.patente}"></c:out></td>
 				<td><c:out value="${orden.fechaIngreso}"></c:out></td>
 				<td><c:out value="${orden.propietario.getNombre()}"></c:out></td>
@@ -36,8 +38,12 @@
 				<c:if test="${orden.estado==true}">
 					<td><c:out value="Finalizada"></c:out></td>
 				</c:if>
-				</td>
-				<td><c:out value="${orden.horasTrabajadas}"></c:out></td>
+				<c:if test="${orden.estado==false}">
+					<td><c:out value="Orden sin finalizar"></c:out></td>
+				</c:if>
+				<c:if test="${orden.estado==true}">
+					<td><c:out value="${orden.horasTrabajadas}"></c:out></td>
+				</c:if>
 				<c:if test="${orden.estado==false}">
 					<td><c:out value="Orden sin finalizar"></c:out></td>
 				</c:if>
@@ -45,11 +51,13 @@
 					<td><c:out value="${orden.costo}"></c:out></td>
 				</c:if>
 				</td>
-				<td><a href="ModificarOrden/${orden.id}">Modificar</a></td>
 				<td><a href="../DetalleDeOrden/ListaDetalles/${orden.id}">Ver Detalles</a></td>
-				<!-- <td><a href="Borrar/${emple.id}">Borrar</a></td>
-			<td><a href="../DetallesEmpleado/Detalles/${emple.id}">Ver Detalles</a></td> -->
-
+				<c:if test="${orden.estado==false}">
+					<td><a href="ModificarOrden/${orden.id}">Modificar</a></td>
+				</c:if>
+				<c:if test="${orden.estado==false}">
+					<td><a href="FinalizarOrden/${orden.id}">Finalizar</a></td>
+				</c:if>
 			</tr>
 
 		</c:forEach>
@@ -59,6 +67,6 @@
 	<br>
 	<a href="NuevaOrden">Crear nueva orden</a>
 	<br>
-	<button type="button" name="back" onclick="history.back()">Volver</button>
+	<a href="/TrabajoFinal">Volver</a>
 </body>
 </html>

@@ -31,12 +31,6 @@ public class Repuesto {
 	@Column(name="precio")
 	private float precio;
 	
-	@ManyToMany(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch=FetchType.LAZY)
-	@JoinTable(name="OrdenDeTrabajo_Repuesto", 
-	joinColumns={@JoinColumn(name="idRepuesto")},
-	inverseJoinColumns={@JoinColumn(name="idOrdenDeTrabajo")})
-	private List<Repuesto> listaRepuestos = new ArrayList<Repuesto>();
-	
 	@OneToMany(mappedBy="repuesto", orphanRemoval = true, cascade= CascadeType.REMOVE)
 	private List<OrdenDeTrabajo_Repuesto> listaDetallesOrdenRepuesto = new ArrayList<OrdenDeTrabajo_Repuesto>();
 	
@@ -67,13 +61,13 @@ public class Repuesto {
 		this.precio = precio;
 	}
 
-	public List<Repuesto> getListaRepuestos() {
+	/*public List<Repuesto> getListaRepuestos() {
 		return listaRepuestos;
 	}
 
 	public void setListaRepuestos(List<Repuesto> listaRepuestos) {
 		this.listaRepuestos = listaRepuestos;
-	}
+	}*/
 
 	public List<OrdenDeTrabajo_Repuesto> getListaDetallesOrdenRepuesto() {
 		return listaDetallesOrdenRepuesto;
