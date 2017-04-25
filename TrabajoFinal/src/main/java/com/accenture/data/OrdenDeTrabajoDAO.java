@@ -2,12 +2,16 @@ package com.accenture.data;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.accenture.model.OrdenDeTrabajo;
+import com.accenture.model.OrdenDeTrabajo_Repuesto;
 
 public class OrdenDeTrabajoDAO {
 
@@ -22,6 +26,16 @@ public class OrdenDeTrabajoDAO {
 		return lista;
 	}
 
+	public List <OrdenDeTrabajo> listarFiltradas(){
+		Session s = sessionFactory.openSession();		
+		Criteria crit = s.createCriteria(OrdenDeTrabajo.class);
+		crit.add(Restrictions.eq("estado", false ));
+		crit.addOrder(Order.asc("fechaIngreso"));
+		List<OrdenDeTrabajo> lista = crit.list();		
+		s.close();
+		return lista;
+	}
+	
 	@Transactional
 	public void insertarOrdenDeTrabajo(OrdenDeTrabajo orden){
 		Session s = sessionFactory.openSession();

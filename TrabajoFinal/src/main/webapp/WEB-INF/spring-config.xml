@@ -8,7 +8,8 @@
 	<context:component-scan base-package="com.accenture.controller" />
 	<!-- Propiedades DB -->
 	<context:property-placeholder location="classpath:database.properties" />
-	<mvc:annotation-driven />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:annotation-driven />	
 	<!-- Fuente de datos - Los valores se obtendran del archivo declarado arriba. 
 		No es obligatorio el uso de un archivo separado. -->
 	<bean id="dataSource"

@@ -3,41 +3,43 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link href="../../resources/estilo.css" rel="stylesheet" type="text/css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Detalles de orden</title>
 </head>
+<h1>Detalles de Orden ${id}</h1>
 <body>
-	<table border=3>
+	<table>
 		<tr>
-			<th>Item</th>
+			<th class="celda">Item</th>
 			<c:if test="${orden.estado==true}">
-				<th>Costo Unitario</th>
+				<th class="celda">Costo Unitario</th>
 			</c:if>
-			<th>Cantidad</th>
+			<th class="celda">Cantidad</th>
 			<c:if test="${orden.estado==true}">
-				<th>SubTotal</th>
+				<th class="celda">SubTotal</th>
 			</c:if>
 
 		</tr>
 		<tr>
 			<c:if test="${orden.estado==true}">
-				<td>Mano de obra</td>
-				<td>${orden.manoDeObra}</td>
-				<td>${orden.horasTrabajadas}</td>
-				<td>${orden.manoDeObra*orden.horasTrabajadas}</td>
+				<td class="celda">Mano de obra</td>
+				<td class="celda">${orden.manoDeObra}</td>
+				<td class="celda">${orden.horasTrabajadas}</td>
+				<td class="celda">${orden.manoDeObra*orden.horasTrabajadas}</td>
 			</c:if>
 
 		</tr>
 		<c:forEach var="detalle" items="${listaDetalles}">
 			<tr>
-				<td><c:out value="${detalle.repuesto.nombre}"></c:out></td>
+				<td class="celda"><c:out value="${detalle.repuesto.nombre}"></c:out></td>
 				<c:if test="${orden.estado==true}">
-					<td><c:out value="${detalle.repuesto.precio}"></c:out></td>
+					<td class="celda"><c:out value="${detalle.repuesto.precio}"></c:out></td>
 				</c:if>
-				<td><c:out value="${detalle.cantidadUsadaDeRepuesto}"></c:out></td>
+				<td class="celda"><c:out value="${detalle.cantidadUsadaDeRepuesto}"></c:out></td>
 				<c:if test="${orden.estado==true}">
-					<td><c:out value="${detalle.costo}"></c:out></td>
+					<td class="celda"><c:out value="${detalle.costo}"></c:out></td>
 				</c:if>
 				<c:if test="${orden.estado==false}">
 					<td><a

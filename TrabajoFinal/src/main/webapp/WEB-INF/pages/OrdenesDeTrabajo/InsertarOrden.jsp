@@ -4,17 +4,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link href="../resources/estilo.css" rel="stylesheet" type="text/css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Nueva Orden</title>
 </head>
+<h1>Crear nueva orden</h1>
 <body>
 	<form:form modelAttribute="orden" action="NuevaOrden" method="post">
 		<form:label path="Patente">Patente:</form:label>
 		<form:input path="patente" maxlength="7" />
-		<br>
-		<form:label path="FechaIngreso">Fecha Ingreso:</form:label>
-		<form:input path="fechaIngreso" />
 		<br>
 		<form:label path="propietario">Propietario:</form:label>
 		<form:select path="propietario.id">
@@ -44,22 +43,13 @@
 			</c:forEach>
 		</form:select>
 		<br>
-		<form:label path="Estado">Estado:</form:label>
-		<form:select path="estado">
-			<form:option value="${false}">
-				<c:out value="En progreso"></c:out>
-			</form:option>
-			<form:option value="${true}">
-				<c:out value="Finalizada"></c:out>
-			</form:option>
-		</form:select>
+		<form:input type="hidden" path="estado" value="${false}"/>
 		<br>
-		<form:label path="HorasTrabajadas">Horas Trabajadas:</form:label>
-		<form:input path="horasTrabajadas" />
+		<form:input type="hidden" path="HorasTrabajadas" value="0" />
 		<br>
-		<input type="submit" value="Enviar">
+		<input type="submit" value="Enviar" class="button">
 		<br>
 	</form:form>
-	<button type="button" name="back" onclick="history.back()">Volver</button>
+	<a href="ListaOrdenes">Volver</a>
 </body>
 </html>

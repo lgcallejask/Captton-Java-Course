@@ -1,6 +1,9 @@
 package com.accenture.controller;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +40,14 @@ public class OrdenDeTrabajoController {
 		return m;
 	}
 
+	@RequestMapping(path="/ListaOrdenes" , method =RequestMethod.POST)
+	public ModelAndView ListarOrdenesActivas(){
+		ModelAndView m = new ModelAndView("OrdenesDeTrabajo/ListaOrdenes");
+		List<OrdenDeTrabajo> lista = ordenDAO.listarFiltradas();
+		m.addObject("listaOrdenes", lista);
+		return m;
+	}
+	
 	@RequestMapping(path="NuevaOrden", method=RequestMethod.GET)
 	public ModelAndView insertarOrden(){
 		ModelAndView m = new ModelAndView("OrdenesDeTrabajo/InsertarOrden");
@@ -50,7 +61,14 @@ public class OrdenDeTrabajoController {
 	public String insertarOrden(@ModelAttribute("orden") OrdenDeTrabajo orden){
 		orden.setManoDeObra(150);
 		orden.setCosto(orden.getManoDeObra()*orden.getHorasTrabajadas());
-		ordenDAO.insertarOrdenDeTrabajo(orden);
+		orden.setFechaIngreso(new Date());
+		try{
+			ordenDAO.insertarOrdenDeTrabajo(orden);
+		}
+		catch(Exception e){
+			JOptionPane.showMessageDialog(null, "Revise los datos a cargar.", "Error", JOptionPane.ERROR_MESSAGE);
+			return "redirect:/OrdenDeTrabajo/NuevaOrden";
+		}
 		return "redirect:/OrdenDeTrabajo/ListaOrdenes";
 	}
 
@@ -78,6 +96,7 @@ public class OrdenDeTrabajoController {
 		orden.setManoDeObra(150);
 		OrdenDeTrabajo antiguaOrden = ordenDAO.getOrdenDeTrabajo(id);
 		orden.setCosto(antiguaOrden.getCosto()+orden.getManoDeObra()*(orden.getHorasTrabajadas()-antiguaOrden.getHorasTrabajadas()));
+		orden.setFechaIngreso(antiguaOrden.getFechaIngreso());
 		ordenDAO.modificarOrdenDeTrabajo(orden);
 		return "redirect:/OrdenDeTrabajo/ListaOrdenes";
 	}
@@ -96,6 +115,8 @@ public class OrdenDeTrabajoController {
 		orden.setId(id);
 		orden.setManoDeObra(150);
 		orden.setCosto(orden.getCosto()+orden.getManoDeObra()*orden.getHorasTrabajadas());
+		OrdenDeTrabajo antiguaOrden = ordenDAO.getOrdenDeTrabajo(id);
+		orden.setFechaIngreso(antiguaOrden.getFechaIngreso());		
 		ordenDAO.modificarOrdenDeTrabajo(orden);
 		return "redirect:/OrdenDeTrabajo/ListaOrdenes";
 	}

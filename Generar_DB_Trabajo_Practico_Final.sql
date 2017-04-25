@@ -1,7 +1,7 @@
-drop database dbTaller;
-create database dbTaller;
+drop database db_Callejas_Lucas;
+create database db_Callejas_Lucas;
 
-use dbTaller;
+use db_Callejas_Lucas;
 
 create table Empleado(
 	id int auto_increment primary key,
@@ -56,19 +56,19 @@ insert into Empleado (nombre, apellido) values	('Pedro','Rivadavia'),
 												('Martin','Julio'),
 												('Fernando','Hernandez');
 
-insert into Propietario (dni, nombre, apellido, direccion, telefono) values
-						('36532104','Cosme','Fulanito','Calle Falsa 444', '1563245687'),
-						('37895431','Pato','Donald','Disney 555', '47893250');
+-- insert into Propietario (dni, nombre, apellido, direccion, telefono) values
+-- 						('36532104','Cosme','Fulanito','Calle Falsa 444', '1563245687'),
+-- 						('37895431','Pato','Donald','Disney 555', '47893250');
 
-insert into OrdenDeTrabajo	(patente, fechaIngreso, idPropietario, marca, modelo, descripcion, idEmpleado, estado, horasTrabajadas, manoDeObra, costoTotal) values
-							('ASD 123', '1982/12/12', 1, 'BMW', 'X3', 'Bujias en mal estado.', 1, 0, 10, 150, 12000);
+-- insert into OrdenDeTrabajo	(patente, fechaIngreso, idPropietario, marca, modelo, descripcion, idEmpleado, estado, horasTrabajadas, manoDeObra, costoTotal) values
+-- 							('ASD 123', '1982/12/12', 1, 'BMW', 'X3', 'Bujias en mal estado.', 1, 0, 10, 150, 10500);
 
 insert into Repuesto (nombre, precio) values	('Bujia', 100 ),
 												('Disipador', 200 ),
 												('Inerte Barra de Carbon', 10000 );
 
-insert into OrdenDeTrabajo_Repuesto (idOrdenDeTrabajo, idRepuesto, cantidadUsadaDeRepuesto, costoDetalle) values
-									(1,1,1,100),
-									(1,2,2,400),
-									(1,3,1,10000);
+-- insert into OrdenDeTrabajo_Repuesto (idOrdenDeTrabajo, idRepuesto, cantidadUsadaDeRepuesto, costoDetalle) values
+-- 									(1,1,1,100),
+-- 									(1,2,2,400),
+-- 									(1,3,1,10000);
 
